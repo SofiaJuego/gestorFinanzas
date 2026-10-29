@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-slate-100 min-h-screen text-slate-800 p-4 md:p-8">
     <div class="max-w-4xl mx-auto space-y-6">
         <!-- Titulo -->
@@ -15,7 +17,7 @@
             <h1 class="text-3xl font-bold text-slate-900">Gestor de Finanzas Personales</h1>
             <p class="text-sm text-slate-500">Controla tus ingresos y gastos diarios</p>
         </header>
-        
+
         <!-- Panel de balnce -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- Ingresos -->
@@ -23,7 +25,7 @@
                 <h3 class="text-sm font-medium text-slate-500">Ingresos Totales</h3>
                 <p id="total-ingresos" class="text-2xl font-bold text-emerald-600">$0.00</p>
             </div>
-       <!--  Gastos -->
+            <!--  Gastos -->
             <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                 <h3 class="text-sm font-medium text-slate-500">Gastos Totales</h3>
                 <p id="total-gastos" class="text-2xl font-bold text-rose-600">$0.00</p>
@@ -34,10 +36,87 @@
                 <p id="balance-neto" class="text-2xl font-bold text-slate-900">$0.00</p>
             </div>
         </section>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Formulario de Registro -->
+            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 md:col-span-1">
+                <h2 class="text-lg font-semibold mb-4 text-slate-800">Nuevo Movimiento</h2>
+
+                <form id="form-transaccion" class="space-y-4">
+                    <!-- Descripción -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Descripción</label>
+                        <input type="text" id="descripcion" required
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Ej. Compra de super">
+                    </div>
+
+                    <!-- Monto -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Monto ($)</label>
+                        <input type="number" id="monto" step="0.01" required
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="0.00">
+                    </div>
+
+                    <!-- Tipo (Ingreso o Gasto) -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Tipo</label>
+                        <select id="tipo"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="ingreso">Ingreso</option>
+                            <option value="gasto">Gasto</option>
+                        </select>
+                    </div>
+
+                    <!-- Categoría -->
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Categoría</label>
+                        <select id="categoria"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="Sueldo">Sueldo</option>
+                            <option value="Comida">Comida</option>
+                            <option value="Transporte">Transporte</option>
+                            <option value="Entretenimiento">Entretenimiento</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón de envio -->
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white font-medium py-2 rounded-lg text-sm hover:bg-blue-700 transition">
+                        Registrar Movimiento
+                    </button>
+                </form>
+            </section>
+
+            <!-- Historial de movimientos -->
+            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 md:col-span-2">
+                <h2 class="text-lg font-semibold mb-4 text-slate-800">Historial de Transacciones</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-xs font-medium text-slate-500 uppercase">
+                                <th class="py-2 px-3">Descripción</th>
+                                <th class="py-2 px-3">Categoría</th>
+                                <th class="py-2 px-3">Monto</th>
+                                <th class="py-2 px-3 text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-movimientos" class="text-sm divide-y divide-slate-100">
+                            <!--  filas -->
+                            <tr class="text-slate-400 text-center">
+                                <td colspan="4" class="py-4">No hay movimientos registrados todavía.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
 
     </div>
 
-    
+    <script type="module" src="./app.js"></script>
 </body>
+
 </html>
